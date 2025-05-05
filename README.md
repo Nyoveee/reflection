@@ -64,3 +64,6 @@ I strongly recommend taking a look at main.cpp for examples! That pretty much wr
 - For MSVC projects, please configure your project properties to use standard conforming preprocessor!
 ![MSVC Standard Conforming Preprocessor](image/msvcpreprocessor.png)
 Go to project properties > C/C++ > Preprocessor > Use Standard Conforming Preprocessor and set it to Yes (/Zc:preprocessor).
+
+## License
+This library is released under the terms of the MIT license.
