@@ -10,7 +10,7 @@ The API is extremely straightforward. First, include "reflection.hpp" in whateve
 ```cpp
 struct Point {
     float x = 0;
-	float y = 0;
+    float y = 0;
 	
     REFLECTABLE(x, y) // <-- Simply add this macro and your class is now reflectable
 };
@@ -23,12 +23,12 @@ reflection::print(pt); // print requires data member to overload the operator<<.
 What if you want to do something generic with each data member? Simply use `reflection::visit` and provide a unary lambda.
 ```cpp
 reflection::visit([&](auto fieldData) {	
-	auto& dataMember = fieldData.get();
-	const char* dataMemberName = fieldData.name();
+    auto& dataMember = fieldData.get();
+    const char* dataMemberName = fieldData.name();
 
-	// From here you can do whatever you want with the data member.
-	// from printing, de/serialization, etc..
-	std::cout << dataMemberName  << " = " << dataMember << '\n';
+    // From here you can do whatever you want with the data member.
+    // from printing, de/serialization, etc..
+    std::cout << dataMemberName  << " = " << dataMember << '\n';
 }, pt);
 ```
 For each data member, you get it's respective field data. Simply call `.get()` and you will get a reference to the data member (constness is respected). You can also call `.name()` to retrieve the identifier of the data member (constexpr). 
@@ -36,8 +36,8 @@ For each data member, you get it's respective field data. Simply call `.get()` a
 Reflection works recursively. Take this example.
 ```cpp
 struct Points {
-	Point pt1 {};
-	Point pt2 {};
+    Point pt1 {};
+    Point pt2 {};
 }
 
 Points pts {};
@@ -48,10 +48,10 @@ As data member pt1 and pt2 are also reflectable, it prints their data member as 
 Finally, if you need to check if a class is reflectable, you can use `reflection::isReflectable<T>()`.
 ```cpp
 if constexpr (reflection::isReflectable<Point>()) {
-	std::cout << "Class is reflectable.\n";
+    std::cout << "Class is reflectable.\n";
 }
 else {
-	std::cout << "Class is not reflectable.\n";
+    std::cout << "Class is not reflectable.\n";
 }
 ```
 Some static asserts have been placed such that for compilation error, there is a nicer error message.
