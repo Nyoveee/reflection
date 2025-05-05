@@ -1,0 +1,9 @@
+archive
+Reflection.sln
+Reflection.vcxproj
+Reflection.vcxproj.filters
+Reflection.vcxproj.user
+test.cpp
+.vs
+.vscode
+x64
