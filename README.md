@@ -1,6 +1,6 @@
 
 # C++20 Simple Static Reflection
-A extremely trivial static reflection library, it allows you to iterate through a class's data member regardless of type. This allows you to automatically cases such as de/serialisation and printing.
+A extremely trivial static reflection library, it allows you to iterate through a class's data member regardless of type. This allows you to automatically do things such as de/serialisation and printing in a scalable manner.
 
 ## Installation
 A single header only file, you only need to download and include "reflection.hpp" in your C++ project.
@@ -9,12 +9,12 @@ A single header only file, you only need to download and include "reflection.hpp
 The API is extremely straightforward. First, include "reflection.hpp" in whatever file you want to use. Just include the REFLECTABLE macro, providing the data members in your classes and you will be able to iterate through these data members, in order.
 ```cpp
 struct Point {
-	    float x = 0;
-	    float y = 0;
+    float x = 0;
+	float y = 0;
 	
-		REFLECTABLE(x, y) // <-- Simply add this macro and your class is now reflectable
+    REFLECTABLE(x, y) // <-- Simply add this macro and your class is now reflectable
 };
-  ```  
+```  
 You can then print any reflected class.
 ```cpp
 Point const pt {};

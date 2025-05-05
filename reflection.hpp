@@ -55,16 +55,6 @@
 #include <concepts>
 #include <type_traits>
 
-/*!***********************************************************************
-* @brief
-*	The macro responsible for static reflection. It generates metadata for every data member.
-*	Please take a look at the Reflection.hpp file level documentation if you want
-*	to understand the implementation details behind reflection.
-*
-* @param [in] ...					: Variadic argument list, containing all of the data members you want to reflect.
-*
-**************************************************************************/
-
 namespace reflection {
 	// For each data member, print it's name and value to stdout. Assumes the data member overloads the operator<<
 	template <typename T>
@@ -147,6 +137,15 @@ namespace reflection {
 #define GET_MACRO(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, _17, _18, _19, _20, _21, _22, _23, _24, _25, _26, _27, _28, _29, _30, _31, _32, NAME, ...) NAME
 #define APPLY_MACRO_TO_EACH(macro, ...) GET_MACRO(__VA_ARGS__, APPLY_MACRO_TO_EACH_32, APPLY_MACRO_TO_EACH_31, APPLY_MACRO_TO_EACH_30, APPLY_MACRO_TO_EACH_29, APPLY_MACRO_TO_EACH_28, APPLY_MACRO_TO_EACH_27, APPLY_MACRO_TO_EACH_26, APPLY_MACRO_TO_EACH_25, APPLY_MACRO_TO_EACH_24, APPLY_MACRO_TO_EACH_23, APPLY_MACRO_TO_EACH_22, APPLY_MACRO_TO_EACH_21, APPLY_MACRO_TO_EACH_20, APPLY_MACRO_TO_EACH_19, APPLY_MACRO_TO_EACH_18, APPLY_MACRO_TO_EACH_17, APPLY_MACRO_TO_EACH_16, APPLY_MACRO_TO_EACH_15, APPLY_MACRO_TO_EACH_14, APPLY_MACRO_TO_EACH_13, APPLY_MACRO_TO_EACH_12, APPLY_MACRO_TO_EACH_11, APPLY_MACRO_TO_EACH_10, APPLY_MACRO_TO_EACH_9, APPLY_MACRO_TO_EACH_8, APPLY_MACRO_TO_EACH_7, APPLY_MACRO_TO_EACH_6, APPLY_MACRO_TO_EACH_5, APPLY_MACRO_TO_EACH_4, APPLY_MACRO_TO_EACH_3, APPLY_MACRO_TO_EACH_2, APPLY_MACRO_TO_EACH_1)(macro, 0, __VA_ARGS__)
 
+/*!***********************************************************************
+* @brief
+*	The macro responsible for static reflection. It generates metadata for every data member.
+*	Please take a look at the Reflection.hpp file level documentation if you want
+*	to understand the implementation details behind reflection.
+*
+* @param [in] ...					: Variadic argument list, containing all of the data members you want to reflect.
+*
+**************************************************************************/
 #define REFLECTABLE(...) \
 static int constexpr _reflection_fields_n = COUNT_ARGS(__VA_ARGS__); \
 friend reflection::query; \
@@ -265,7 +264,7 @@ namespace reflection {
 		static_assert(isReflectable<T>(), "Class provided is not reflectable! Did you forget to provide the REFLECTABLE macro?");
 
 		visit([](auto fieldData) {
-			std::cout << fieldData.name() << " = " << fieldData.get() << '\n';
+				
 		}, std::forward<T>(x));
 	}
 
